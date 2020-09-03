@@ -16,5 +16,39 @@ namespace TPQR_Session5_3_9
         {
             InitializeComponent();
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Hide();
+            (new LoginForm()).ShowDialog();
+            Close();
+        }
+
+        private void btnAssign_Click(object sender, EventArgs e)
+        {
+            Hide();
+            (new AssignSeat()).ShowDialog();
+            Close();
+        }
+
+        private void btnEnter_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAnalyze_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCalculate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
