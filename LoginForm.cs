@@ -19,7 +19,36 @@ namespace TPQR_Session5_3_9
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-
+            using (var context = new Session5Entities())
+            {
+                if (string.IsNullOrWhiteSpace(txtUserID.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
+                {
+                    MessageBox.Show("Please check your fields!", "Empty Field(s)",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    var findUser = (from x in context.Users
+                                    where x.userId == txtUserID.Text
+                                    select x).FirstOrDefault();
+                    if (findUser == null)
+                    {
+                        MessageBox.Show("No such user exist!", "Invalid Login",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else if (findUser.passwd != txtPassword.Text)
+                    {
+                        MessageBox.Show("User ID or Password do not match our DB!", "Invalid Login",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        Hide();
+                        (new AdminMain()).ShowDialog();
+                        Close();
+                    }
+                }
+            }
         }
     }
 }
