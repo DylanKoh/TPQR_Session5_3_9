@@ -441,12 +441,157 @@ namespace TPQR_Session5_3_9
 
         private void btnRandom_Click(object sender, EventArgs e)
         {
+            var boolCheck = random();
+            if (boolCheck == false)
+            {
+                random();
+            }
+        }
 
+        private bool random()
+        {
+            Random random = new Random();
+            var unAssignedList = new List<int>();
+            var listToRemove = new List<string>();
+            using (var context = new Session5Entities())
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    foreach (DataGridViewColumn cell in dataGridView1.Columns)
+                    {
+                        if (dataGridView1[cell.Index, row.Index].Style.BackColor != Color.Blue)
+                        {
+                            unAssignedList.Add(Convert.ToInt32(dataGridView1[cell.Index, row.Index].Value));
+                        }
+                    }
+                }
+                foreach (var item in lbCompetitors.Items)
+                {
+                    var getID = (from x in context.Competitors
+                                 where item.ToString().Contains(x.competitorName + ", " + x.competitorCountry)
+                                 select x.competitorId).FirstOrDefault();
+                    var getCurrentCountry = (from x in context.Competitors
+                                             where x.competitorId == getID
+                                             select x.competitorCountry).FirstOrDefault();
+                    var randomIndex = random.Next(unAssignedList.Count - 1);
+                    var randomSeat = unAssignedList[randomIndex].ToString();
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        foreach (DataGridViewColumn cell in dataGridView1.Columns)
+                        {
+                            if (dataGridView1[cell.Index, row.Index].Value.ToString() == randomSeat)
+                            {
+                                var getRowIndex = row.Index;
+                                if (getRowIndex == 0)
+                                {
+                                    var getBelowCountry = dataGridView1[cell.Index, row.Index + 1].Value.ToString();
+                                    var checkBottom = (from x in context.Competitors
+                                                       where getBelowCountry.Contains(x.competitorId)
+                                                       select x.competitorCountry).FirstOrDefault();
+
+                                    if (getCurrentCountry != checkBottom)
+                                    {
+                                        dataGridView1[cell.Index, row.Index].Value = $"{randomSeat}\n{getID}";
+                                        listToRemove.Add(item.ToString());
+                                        dataGridView1[cell.Index, row.Index].Style.BackColor = Color.Blue;
+                                        dataGridView1[cell.Index, row.Index].Style.ForeColor = Color.White;
+                                        lblAssigned.Text = (int.Parse(lblAssigned.Text) + 1).ToString();
+                                        lblUnassigned.Text = (int.Parse(lblUnassigned.Text) - 1).ToString();
+                                    }
+                                }
+                                else if (getRowIndex == dataGridView1.RowCount - 1)
+                                {
+                                    var getAboveCountry = dataGridView1[cell.Index, row.Index - 1].Value.ToString();
+                                    var checkAbove = (from x in context.Competitors
+                                                      where getAboveCountry.Contains(x.competitorId)
+                                                      select x.competitorCountry).FirstOrDefault();
+
+                                    if (getCurrentCountry != checkAbove)
+                                    {
+                                        dataGridView1[cell.Index, row.Index].Value = $"{randomSeat}\n{getID}";
+                                        listToRemove.Add(item.ToString());
+                                        dataGridView1[cell.Index, row.Index].Style.BackColor = Color.Blue;
+                                        dataGridView1[cell.Index, row.Index].Style.ForeColor = Color.White;
+                                        lblAssigned.Text = (int.Parse(lblAssigned.Text) + 1).ToString();
+                                        lblUnassigned.Text = (int.Parse(lblUnassigned.Text) - 1).ToString();
+                                    }
+                                }
+                                else
+                                {
+                                    var getAboveCountry = dataGridView1[cell.Index, row.Index - 1].Value.ToString();
+                                    var checkAbove = (from x in context.Competitors
+                                                      where getAboveCountry.Contains(x.competitorId)
+                                                      select x.competitorCountry).FirstOrDefault();
+
+                                    var getBelowCountry = dataGridView1[cell.Index, row.Index + 1].Value.ToString();
+                                    var checkBottom = (from x in context.Competitors
+                                                       where getBelowCountry.Contains(x.competitorId)
+                                                       select x.competitorCountry).FirstOrDefault();
+
+                                    if (getCurrentCountry != checkAbove && getCurrentCountry != checkBottom)
+                                    {
+                                        dataGridView1[cell.Index, row.Index].Value = $"{randomSeat}\n{getID}";
+                                        listToRemove.Add(item.ToString());
+                                        dataGridView1[cell.Index, row.Index].Style.BackColor = Color.Blue;
+                                        dataGridView1[cell.Index, row.Index].Style.ForeColor = Color.White;
+                                        lblAssigned.Text = (int.Parse(lblAssigned.Text) + 1).ToString();
+                                        lblUnassigned.Text = (int.Parse(lblUnassigned.Text) - 1).ToString();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                foreach (var item in listToRemove)
+                {
+                    lbCompetitors.Items.Remove(item);
+                }
+            }
+            if (lbCompetitors.Items.Count != 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
+            using (var context = new Session5Entities())
+            {
+                var getSkillID = (from x in context.Skills
+                                  where x.skillName == cbSkill.SelectedItem.ToString()
+                                  select x.skillId).FirstOrDefault();
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    foreach (DataGridViewColumn cell in dataGridView1.Columns)
+                    {
+                        if (dataGridView1[cell.Index, row.Index].Style.BackColor != Color.Blue)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            var getSeat = int.Parse(dataGridView1[cell.Index, row.Index].Value.ToString().Split('\n')[0]);
+                            var getID = dataGridView1[cell.Index, row.Index].Value.ToString().Split('\n')[1];
 
+                            var getCompetitor = (from x in context.Competitors
+                                                 where x.competitorId == getID && x.skillIdFK == getSkillID
+                                                 select x).FirstOrDefault();
+                            getCompetitor.assignedSeat = getSeat;
+                            
+
+                        }
+                    }
+                }
+                context.SaveChanges();
+            }
+            MessageBox.Show("Assign seats successful!", "Assign seat", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Hide();
+            (new AdminMain()).ShowDialog();
+            Close();
         }
     }
 }
