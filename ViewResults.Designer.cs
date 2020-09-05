@@ -52,9 +52,9 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnGold = new System.Windows.Forms.Button();
+            this.btnSilver = new System.Windows.Forms.Button();
+            this.btnBronze = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.gbGold.SuspendLayout();
@@ -216,7 +216,7 @@
             // 
             // gbGold
             // 
-            this.gbGold.Controls.Add(this.button1);
+            this.gbGold.Controls.Add(this.btnGold);
             this.gbGold.Controls.Add(this.pictureBox2);
             this.gbGold.Controls.Add(this.pictureBox1);
             this.gbGold.Location = new System.Drawing.Point(545, 179);
@@ -228,7 +228,7 @@
             // 
             // gbSilver
             // 
-            this.gbSilver.Controls.Add(this.button2);
+            this.gbSilver.Controls.Add(this.btnSilver);
             this.gbSilver.Controls.Add(this.pictureBox4);
             this.gbSilver.Controls.Add(this.pictureBox3);
             this.gbSilver.Location = new System.Drawing.Point(545, 320);
@@ -240,7 +240,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.button3);
+            this.groupBox3.Controls.Add(this.btnBronze);
             this.groupBox3.Controls.Add(this.pictureBox6);
             this.groupBox3.Controls.Add(this.pictureBox5);
             this.groupBox3.Location = new System.Drawing.Point(545, 461);
@@ -298,35 +298,35 @@
             this.pictureBox6.TabIndex = 2;
             this.pictureBox6.TabStop = false;
             // 
-            // button1
+            // btnGold
             // 
-            this.button1.Location = new System.Drawing.Point(151, 106);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(163, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "More Gold";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnGold.Location = new System.Drawing.Point(151, 106);
+            this.btnGold.Name = "btnGold";
+            this.btnGold.Size = new System.Drawing.Size(163, 23);
+            this.btnGold.TabIndex = 2;
+            this.btnGold.Text = "More Gold";
+            this.btnGold.UseVisualStyleBackColor = true;
+            this.btnGold.Click += new System.EventHandler(this.btnGold_Click);
             // 
-            // button2
+            // btnSilver
             // 
-            this.button2.Location = new System.Drawing.Point(151, 106);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(163, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "More Silver";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnSilver.Location = new System.Drawing.Point(151, 106);
+            this.btnSilver.Name = "btnSilver";
+            this.btnSilver.Size = new System.Drawing.Size(163, 23);
+            this.btnSilver.TabIndex = 3;
+            this.btnSilver.Text = "More Silver";
+            this.btnSilver.UseVisualStyleBackColor = true;
+            this.btnSilver.Click += new System.EventHandler(this.btnSilver_Click);
             // 
-            // button3
+            // btnBronze
             // 
-            this.button3.Location = new System.Drawing.Point(151, 106);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(163, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "More Bronze";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnBronze.Location = new System.Drawing.Point(151, 106);
+            this.btnBronze.Name = "btnBronze";
+            this.btnBronze.Size = new System.Drawing.Size(163, 23);
+            this.btnBronze.TabIndex = 3;
+            this.btnBronze.Text = "More Bronze";
+            this.btnBronze.UseVisualStyleBackColor = true;
+            this.btnBronze.Click += new System.EventHandler(this.btnBronze_Click);
             // 
             // ViewResults
             // 
@@ -388,13 +388,13 @@
         private System.Windows.Forms.GroupBox gbGold;
         private System.Windows.Forms.GroupBox gbSilver;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnGold;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnSilver;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnBronze;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox5;
     }
