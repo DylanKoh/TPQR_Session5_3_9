@@ -73,6 +73,12 @@
     <Compile Include="Competitor.cs">
       <DependentUpon>Session5Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="EnterMarks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnterMarks.Designer.cs">
+      <DependentUpon>EnterMarks.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AssignSeat.resx">
       <DependentUpon>AssignSeat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnterMarks.resx">
+      <DependentUpon>EnterMarks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

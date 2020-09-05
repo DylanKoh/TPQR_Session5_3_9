@@ -33,7 +33,9 @@ namespace TPQR_Session5_3_9
 
         private void btnEnter_Click(object sender, EventArgs e)
         {
-
+            Hide();
+            (new EnterMarks()).ShowDialog();
+            Close();
         }
 
         private void btnView_Click(object sender, EventArgs e)
