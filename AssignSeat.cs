@@ -131,14 +131,183 @@ namespace TPQR_Session5_3_9
 
         private void btnSwap_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedCells.Count != 2)
+            if (dataGridView1.SelectedCells.Count != 2 && (dataGridView1.SelectedCells[0].Style.BackColor != Color.Blue || dataGridView1.SelectedCells[1].Style.BackColor != Color.Blue))
             {
-                MessageBox.Show("Please ensure there are two competitors selected!", "Invalid Input", MessageBoxButtons.OK,
+                MessageBox.Show("Please ensure there are two competitors' seats selected!", "Invalid Input", MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
             }
             else
             {
+                var list = new List<DataGridViewCell>();
+                var valueList = new List<string>();
+                foreach (DataGridViewCell item in dataGridView1.SelectedCells)
+                {
+                    list.Add(item);
+                    valueList.Add(item.Value.ToString().Split('\n')[1]);
+                }
+                var boolCheck = true;
+                var seat1 = 0;
+                var seat2 = 0;
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        var checkNewPos = list[i + 1];
+                        var currentPos = list[i];
+                        var getRowIndex = checkNewPos.RowIndex;
+                        var getCurrentAssignedID = currentPos.Value.ToString().Split('\n')[1];
+                        using (var context = new Session5Entities())
+                        {
+                            seat1 = int.Parse(checkNewPos.Value.ToString().Split('\n')[0]);
+                            var getCurrentCountry = (from x in context.Competitors
+                                                     where x.competitorId == getCurrentAssignedID
+                                                     select x.competitorCountry).FirstOrDefault();
+                            if (getRowIndex == dataGridView1.RowCount - 1)
+                            {
+                                var getAboveCountry = dataGridView1[checkNewPos.ColumnIndex, getRowIndex - 1].Value.ToString();
+                                var checkAbove = (from x in context.Competitors
+                                                  where getAboveCountry.Contains(x.competitorId)
+                                                  select x.competitorCountry).FirstOrDefault();
 
+                                if (getCurrentCountry == checkAbove)
+                                {
+                                    boolCheck = false;
+                                    break;
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                            }
+                            else if (getRowIndex == 0)
+                            {
+                                var getBottomCountry = dataGridView1[checkNewPos.ColumnIndex, getRowIndex + 1].Value.ToString();
+                                var checkBottom = (from x in context.Competitors
+                                                   where getBottomCountry.Contains(x.competitorId)
+                                                   select x.competitorCountry).FirstOrDefault();
+                                if (getCurrentCountry == checkBottom)
+                                {
+                                    boolCheck = false;
+                                    break;
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                            }
+                            else
+                            {
+                                var getBottomCountry = dataGridView1[checkNewPos.ColumnIndex, getRowIndex + 1].Value.ToString();
+                                var getAboveCountry = dataGridView1[checkNewPos.ColumnIndex, getRowIndex - 1].Value.ToString();
+                                var checkBottom = (from x in context.Competitors
+                                                   where getBottomCountry.Contains(x.competitorId)
+                                                   select x.competitorCountry).FirstOrDefault();
+                                var checkAbove = (from x in context.Competitors
+                                                  where getAboveCountry.Contains(x.competitorId)
+                                                  select x.competitorCountry).FirstOrDefault();
+                                if (getCurrentCountry == checkBottom || getCurrentCountry == checkAbove)
+                                {
+                                    boolCheck = false;
+                                    break;
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        var checkNewPos = list[i - 1];
+                        var currentPos = list[i];
+                        var getRowIndex = checkNewPos.RowIndex;
+                        var getCurrentAssignedID = currentPos.Value.ToString().Split('\n')[1];
+                        using (var context = new Session5Entities())
+                        {
+                            seat2 = int.Parse(checkNewPos.Value.ToString().Split('\n')[0]);
+                            var getCurrentCountry = (from x in context.Competitors
+                                                     where x.competitorId == getCurrentAssignedID
+                                                     select x.competitorCountry).FirstOrDefault();
+                            if (getRowIndex == dataGridView1.RowCount - 1)
+                            {
+                                var getAboveCountry = dataGridView1[checkNewPos.ColumnIndex, getRowIndex - 1].Value.ToString();
+                                var checkAbove = (from x in context.Competitors
+                                                  where getAboveCountry.Contains(x.competitorId)
+                                                  select x.competitorCountry).FirstOrDefault();
+
+                                if (getCurrentCountry == checkAbove)
+                                {
+                                    boolCheck = false;
+                                    break;
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                            }
+                            else if (getRowIndex == 0)
+                            {
+                                var getBottomCountry = dataGridView1[checkNewPos.ColumnIndex, getRowIndex + 1].Value.ToString();
+                                var checkBottom = (from x in context.Competitors
+                                                   where getBottomCountry.Contains(x.competitorId)
+                                                   select x.competitorCountry).FirstOrDefault();
+                                if (getCurrentCountry == checkBottom)
+                                {
+                                    boolCheck = false;
+                                    break;
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                            }
+                            else
+                            {
+                                var getBottomCountry = dataGridView1[checkNewPos.ColumnIndex, getRowIndex + 1].Value.ToString();
+                                var getAboveCountry = dataGridView1[checkNewPos.ColumnIndex, getRowIndex - 1].Value.ToString();
+                                var checkBottom = (from x in context.Competitors
+                                                   where getBottomCountry.Contains(x.competitorId)
+                                                   select x.competitorCountry).FirstOrDefault();
+                                var checkAbove = (from x in context.Competitors
+                                                  where getAboveCountry.Contains(x.competitorId)
+                                                  select x.competitorCountry).FirstOrDefault();
+                                if (getCurrentCountry == checkBottom || getCurrentCountry == checkAbove)
+                                {
+                                    boolCheck = false;
+                                    break;
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (boolCheck == false)
+                {
+                    MessageBox.Show("Unable to swap seats as Competitors of same country cannot be in front or behind each other!",
+                        "Invalid seating assignment", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        if (i == 0)
+                        {
+                            var newPos = list[i + 1];
+                            var curretID = valueList[i];
+                            dataGridView1[newPos.ColumnIndex, newPos.RowIndex].Value = $"{seat1}\n{curretID}";
+                        }
+                        else
+                        {
+                            var newPos = list[i - 1];
+                            var curretID = valueList[i];
+                            dataGridView1[newPos.ColumnIndex, newPos.RowIndex].Value = $"{seat2}\n{curretID}";
+                        }
+                    }
+                }
             }
         }
 
@@ -201,7 +370,7 @@ namespace TPQR_Session5_3_9
                         var checkBottom = (from x in context.Competitors
                                            where getBottomCountry.Contains(x.competitorId)
                                            select x.competitorCountry).FirstOrDefault();
-                        if (getSelectedCountry ==checkBottom)
+                        if (getSelectedCountry == checkBottom)
                         {
                             MessageBox.Show("Competitors of same country cannot be in front or behind each other!",
                                 "Invalid seating assignment", MessageBoxButtons.OK, MessageBoxIcon.Hand);
@@ -268,6 +437,16 @@ namespace TPQR_Session5_3_9
                 }
 
             }
+        }
+
+        private void btnRandom_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
