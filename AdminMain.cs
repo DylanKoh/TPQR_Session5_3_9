@@ -54,7 +54,9 @@ namespace TPQR_Session5_3_9
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-
+            Hide();
+            (new CalculateBonus()).ShowDialog();
+            Close();
         }
     }
 }

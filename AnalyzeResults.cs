@@ -75,7 +75,7 @@ namespace TPQR_Session5_3_9
                     pbCountry.Image = ReturnFlag(bestPerformingCountry);
                     lblBestCountry.Text = $"{bestPerformingCountry} ({bestCountry.OrderByDescending(x => x.Value).ElementAt(0).Value})";
                     var getBestSession = (from x in context.Results
-                                          where x.Competitor.competitorCountry == bestPerformingCountry && x.Competition.skillIdFK == getSkillID
+                                          where x.Competition.skillIdFK == getSkillID
                                           group x.totalMarks by x.Competition.sessionNo into y
                                           select new { minVale = y.Min(), maxValue = y.Max(), SessionNo = y.Key });
                     var sessionDictMin = new Dictionary<int, double>();
@@ -91,12 +91,12 @@ namespace TPQR_Session5_3_9
                     lblToughest.Text = $"Session {getThoughestSession} ({sessionDictMin.Where(x => x.Key == getThoughestSession).Select(x => x.Value).FirstOrDefault()}-{sessionDictMax.Where(x => x.Key == getThoughestSession).Select(x => x.Value).FirstOrDefault()})";
 
                     var getResultsTotal = (from x in context.Results
-                                           where x.Competitor.competitorCountry == bestPerformingCountry && x.Competitor.Skill.skillName == cbSkill.SelectedItem.ToString()
+                                           where x.Competitor.Skill.skillName == cbSkill.SelectedItem.ToString()
                                            orderby x.totalMarks
                                            select x.totalMarks).Count();
 
                     var median = (from x in context.Results
-                                  where x.Competitor.competitorCountry == bestPerformingCountry && x.Competitor.Skill.skillName == cbSkill.SelectedItem.ToString()
+                                  where x.Competitor.Skill.skillName == cbSkill.SelectedItem.ToString()
                                   orderby x.totalMarks
                                   select x.totalMarks).ToList();
 
@@ -132,12 +132,13 @@ namespace TPQR_Session5_3_9
                     }
 
                     var getCompetitors = (from x in context.Competitors
-                                          where x.competitorCountry == bestPerformingCountry && x.skillIdFK == getSkillID
+                                          where x.skillIdFK == getSkillID
                                           select x);
                     foreach (var item in getCompetitors)
                     {
                         chart1.Series.Add(item.competitorName);
                         chart1.Series[item.competitorName].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                        chart1.Series[item.competitorName].BorderWidth = 3;
                         var getSessions = (from x in context.Competitions
                                            where x.skillIdFK == getSkillID
                                            orderby x.sessionNo
@@ -154,6 +155,7 @@ namespace TPQR_Session5_3_9
                             else
                             {
                                 chart1.Series[item.competitorName].Points.AddXY($"Session {session}", 0);
+                                
                             }
                         }
                     }
