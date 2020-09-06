@@ -53,6 +53,8 @@ namespace TPQR_Session5_3_9
             btnGold.Visible = false;
             btnSilver.Visible = false;
             btnBronze.Visible = false;
+            lblSessions.Text = 0.ToString();
+            lblCompleted.Text = 0.ToString();
             using (var context = new Session5Entities())
             {
                 var getSkillID = (from x in context.Skills
@@ -63,6 +65,26 @@ namespace TPQR_Session5_3_9
                                   group x by x.Competitor.competitorName into y
                                   orderby y.Sum(z => z.totalMarks) descending
                                   select y);
+                var getTotalSessions = (from x in context.Competitions
+                                        where x.skillIdFK == getSkillID
+                                        select x);
+                var getNumberOfCompetitors = (from x in context.Competitors
+                                              where x.skillIdFK == getSkillID
+                                              select x).Count();
+                lblSessions.Text = getTotalSessions.Count().ToString();
+                var totalCompleted = 0;
+                foreach (var item in getTotalSessions)
+                {
+                    var getTotalResults = (from x in context.Results
+                                           where x.competitionIdFK == item.competitionId
+                                           select x).Count();
+                    if (getTotalResults == getNumberOfCompetitors)
+                    {
+                        totalCompleted += 1;
+                    }
+                }
+
+                lblCompleted.Text = totalCompleted.ToString();
                 foreach (var item in getResults)
                 {
                     var newRow = new List<string>()
