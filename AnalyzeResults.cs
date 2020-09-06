@@ -88,7 +88,7 @@ namespace TPQR_Session5_3_9
                     var getEasiestSession = sessionDictMax.Where(x => x.Key == sessionDictMin.Where(y => y.Value == sessionDictMin.Values.Max()).Select(y => y.Key).FirstOrDefault()).Select(x => x.Key).FirstOrDefault(); ;
                     var getThoughestSession = sessionDictMin.Where(x => x.Key == sessionDictMax.Where(y => y.Value == sessionDictMax.Values.Min()).Select(y => y.Key).FirstOrDefault()).Select(x => x.Key).FirstOrDefault();
                     lblEasiest.Text = $"Session {getEasiestSession} ({sessionDictMin.Where(x => x.Key == getEasiestSession).Select(x => x.Value).FirstOrDefault()}-{sessionDictMax.Where(x => x.Key == getEasiestSession).Select(x => x.Value).FirstOrDefault()})";
-                    lblToughest.Text = $"Session {getEasiestSession} ({sessionDictMin.Where(x => x.Key == getThoughestSession).Select(x => x.Value).FirstOrDefault()}-{sessionDictMax.Where(x => x.Key == getThoughestSession).Select(x => x.Value).FirstOrDefault()})";
+                    lblToughest.Text = $"Session {getThoughestSession} ({sessionDictMin.Where(x => x.Key == getThoughestSession).Select(x => x.Value).FirstOrDefault()}-{sessionDictMax.Where(x => x.Key == getThoughestSession).Select(x => x.Value).FirstOrDefault()})";
 
                     var getResultsTotal = (from x in context.Results
                                            where x.Competitor.competitorCountry == bestPerformingCountry && x.Competitor.Skill.skillName == cbSkill.SelectedItem.ToString()
@@ -138,12 +138,23 @@ namespace TPQR_Session5_3_9
                     {
                         chart1.Series.Add(item.competitorName);
                         chart1.Series[item.competitorName].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-                        var getGraphResults = (from x in context.Results
-                                               where x.recordsIdFK == item.recordsId
-                                               select x);
-                        foreach (var results in getGraphResults)
+                        var getSessions = (from x in context.Competitions
+                                           where x.skillIdFK == getSkillID
+                                           orderby x.sessionNo
+                                           select x.sessionNo);
+                        foreach (var session in getSessions)
                         {
-                            chart1.Series[item.competitorName].Points.AddXY(results.Competition.sessionNo, results.totalMarks);
+                            var getMarks = (from x in context.Results
+                                            where x.Competition.sessionNo == session && x.recordsIdFK == item.recordsId && x.Competition.skillIdFK == getSkillID
+                                            select x).FirstOrDefault();
+                            if (getMarks != null)
+                            {
+                                chart1.Series[item.competitorName].Points.AddXY($"Session {session}", getMarks.totalMarks);
+                            }
+                            else
+                            {
+                                chart1.Series[item.competitorName].Points.AddXY($"Session {session}", 0);
+                            }
                         }
                     }
                 }
