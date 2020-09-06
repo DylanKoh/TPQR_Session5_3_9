@@ -46,6 +46,7 @@ namespace TPQR_Session5_3_9
             pbGreenUp.Visible = true;
             pbRedDown.Visible = true;
             pbCountry.Image = null;
+            chart1.Series.Clear();
             using (var context = new Session5Entities())
             {
                 var getSkillID = (from x in context.Skills
@@ -128,6 +129,22 @@ namespace TPQR_Session5_3_9
                     else
                     {
                         pbGreenUp.Visible = false;
+                    }
+
+                    var getCompetitors = (from x in context.Competitors
+                                          where x.competitorCountry == bestPerformingCountry && x.skillIdFK == getSkillID
+                                          select x);
+                    foreach (var item in getCompetitors)
+                    {
+                        chart1.Series.Add(item.competitorName);
+                        chart1.Series[item.competitorName].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                        var getGraphResults = (from x in context.Results
+                                               where x.recordsIdFK == item.recordsId
+                                               select x);
+                        foreach (var results in getGraphResults)
+                        {
+                            chart1.Series[item.competitorName].Points.AddXY(results.Competition.sessionNo, results.totalMarks);
+                        }
                     }
                 }
 
