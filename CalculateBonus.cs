@@ -66,8 +66,8 @@ namespace TPQR_Session5_3_9
                                   orderby x.Competition.sessionNo
                                   select x);
 
-                var bonus = 0;
-                var totalAmount = 0;
+                var bonus = 0.0;
+                var totalAmountEarned = 0.0;
                 foreach (var item in getResults)
                 {
                     double totalMark = item.Competition.q1MaxMarks + item.Competition.q2MaxMarks + item.Competition.q3MaxMarks + item.Competition.q4MaxMarks;
@@ -146,7 +146,26 @@ namespace TPQR_Session5_3_9
                         dataGridView1.Rows.Add(q3Row.ToArray());
                         dataGridView1.Rows.Add(q4Row.ToArray());
                     }
+                    var totalMarksForSession = item.totalMarks;
+                    if (totalMarksForSession > totalMark * 0.75)
+                    {
+                        bonus += 5;
+                    }
                 }
+                var totalMarksOverall = 0.0;
+                foreach (DataGridViewRow item in dataGridView1.Rows)
+                {
+                    totalAmountEarned += Convert.ToDouble(dataGridView1[4, item.Index].Value);
+                    totalMarksOverall += Convert.ToDouble(dataGridView1[2, item.Index].Value);
+                }
+                if (totalMarksOverall > context.Competitions.Where(x => x.skillIdFK == skillID).Select(x => x).Count())
+                {
+                    bonus += 10;
+                }
+
+                totalAmountEarned += bonus;
+                lblAmount.Text = totalAmountEarned.ToString();
+                lblTotalBonus.Text = bonus.ToString();
             }
         }
     }
