@@ -40,7 +40,9 @@ namespace TPQR_Session5_3_9
 
         private void btnView_Click(object sender, EventArgs e)
         {
-
+            Hide();
+            (new ViewResults()).ShowDialog();
+            Close();
         }
 
         private void btnAnalyze_Click(object sender, EventArgs e)

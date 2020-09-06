@@ -44,28 +44,28 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbGold = new System.Windows.Forms.GroupBox();
-            this.gbSilver = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.btnGold = new System.Windows.Forms.Button();
+            this.pbGold2 = new System.Windows.Forms.PictureBox();
+            this.pbGold1 = new System.Windows.Forms.PictureBox();
+            this.gbSilver = new System.Windows.Forms.GroupBox();
             this.btnSilver = new System.Windows.Forms.Button();
+            this.pbSilver2 = new System.Windows.Forms.PictureBox();
+            this.pbSilver1 = new System.Windows.Forms.PictureBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnBronze = new System.Windows.Forms.Button();
+            this.pbBronze2 = new System.Windows.Forms.PictureBox();
+            this.pbBronze1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.gbGold.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGold2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGold1)).BeginInit();
             this.gbSilver.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSilver2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSilver1)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBronze2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBronze1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -217,86 +217,14 @@
             // gbGold
             // 
             this.gbGold.Controls.Add(this.btnGold);
-            this.gbGold.Controls.Add(this.pictureBox2);
-            this.gbGold.Controls.Add(this.pictureBox1);
+            this.gbGold.Controls.Add(this.pbGold2);
+            this.gbGold.Controls.Add(this.pbGold1);
             this.gbGold.Location = new System.Drawing.Point(545, 179);
             this.gbGold.Name = "gbGold";
             this.gbGold.Size = new System.Drawing.Size(431, 135);
             this.gbGold.TabIndex = 12;
             this.gbGold.TabStop = false;
             this.gbGold.Text = "Gold";
-            // 
-            // gbSilver
-            // 
-            this.gbSilver.Controls.Add(this.btnSilver);
-            this.gbSilver.Controls.Add(this.pictureBox4);
-            this.gbSilver.Controls.Add(this.pictureBox3);
-            this.gbSilver.Location = new System.Drawing.Point(545, 320);
-            this.gbSilver.Name = "gbSilver";
-            this.gbSilver.Size = new System.Drawing.Size(431, 135);
-            this.gbSilver.TabIndex = 13;
-            this.gbSilver.TabStop = false;
-            this.gbSilver.Text = "Silver";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.btnBronze);
-            this.groupBox3.Controls.Add(this.pictureBox6);
-            this.groupBox3.Controls.Add(this.pictureBox5);
-            this.groupBox3.Location = new System.Drawing.Point(545, 461);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(431, 135);
-            this.groupBox3.TabIndex = 13;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Bronze";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(90, 51);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Location = new System.Drawing.Point(259, 51);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Location = new System.Drawing.Point(90, 53);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox3.TabIndex = 1;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Location = new System.Drawing.Point(259, 53);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox4.TabIndex = 2;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Location = new System.Drawing.Point(90, 54);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox5.TabIndex = 1;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Location = new System.Drawing.Point(259, 54);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox6.TabIndex = 2;
-            this.pictureBox6.TabStop = false;
             // 
             // btnGold
             // 
@@ -306,7 +234,38 @@
             this.btnGold.TabIndex = 2;
             this.btnGold.Text = "More Gold";
             this.btnGold.UseVisualStyleBackColor = true;
+            this.btnGold.Visible = false;
             this.btnGold.Click += new System.EventHandler(this.btnGold_Click);
+            // 
+            // pbGold2
+            // 
+            this.pbGold2.Location = new System.Drawing.Point(259, 51);
+            this.pbGold2.Name = "pbGold2";
+            this.pbGold2.Size = new System.Drawing.Size(100, 50);
+            this.pbGold2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbGold2.TabIndex = 1;
+            this.pbGold2.TabStop = false;
+            // 
+            // pbGold1
+            // 
+            this.pbGold1.Location = new System.Drawing.Point(90, 51);
+            this.pbGold1.Name = "pbGold1";
+            this.pbGold1.Size = new System.Drawing.Size(100, 50);
+            this.pbGold1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbGold1.TabIndex = 0;
+            this.pbGold1.TabStop = false;
+            // 
+            // gbSilver
+            // 
+            this.gbSilver.Controls.Add(this.btnSilver);
+            this.gbSilver.Controls.Add(this.pbSilver2);
+            this.gbSilver.Controls.Add(this.pbSilver1);
+            this.gbSilver.Location = new System.Drawing.Point(545, 320);
+            this.gbSilver.Name = "gbSilver";
+            this.gbSilver.Size = new System.Drawing.Size(431, 135);
+            this.gbSilver.TabIndex = 13;
+            this.gbSilver.TabStop = false;
+            this.gbSilver.Text = "Silver";
             // 
             // btnSilver
             // 
@@ -316,7 +275,38 @@
             this.btnSilver.TabIndex = 3;
             this.btnSilver.Text = "More Silver";
             this.btnSilver.UseVisualStyleBackColor = true;
+            this.btnSilver.Visible = false;
             this.btnSilver.Click += new System.EventHandler(this.btnSilver_Click);
+            // 
+            // pbSilver2
+            // 
+            this.pbSilver2.Location = new System.Drawing.Point(259, 53);
+            this.pbSilver2.Name = "pbSilver2";
+            this.pbSilver2.Size = new System.Drawing.Size(100, 50);
+            this.pbSilver2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbSilver2.TabIndex = 2;
+            this.pbSilver2.TabStop = false;
+            // 
+            // pbSilver1
+            // 
+            this.pbSilver1.Location = new System.Drawing.Point(90, 53);
+            this.pbSilver1.Name = "pbSilver1";
+            this.pbSilver1.Size = new System.Drawing.Size(100, 50);
+            this.pbSilver1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbSilver1.TabIndex = 1;
+            this.pbSilver1.TabStop = false;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btnBronze);
+            this.groupBox3.Controls.Add(this.pbBronze2);
+            this.groupBox3.Controls.Add(this.pbBronze1);
+            this.groupBox3.Location = new System.Drawing.Point(545, 461);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(431, 135);
+            this.groupBox3.TabIndex = 13;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Bronze";
             // 
             // btnBronze
             // 
@@ -326,7 +316,26 @@
             this.btnBronze.TabIndex = 3;
             this.btnBronze.Text = "More Bronze";
             this.btnBronze.UseVisualStyleBackColor = true;
+            this.btnBronze.Visible = false;
             this.btnBronze.Click += new System.EventHandler(this.btnBronze_Click);
+            // 
+            // pbBronze2
+            // 
+            this.pbBronze2.Location = new System.Drawing.Point(259, 54);
+            this.pbBronze2.Name = "pbBronze2";
+            this.pbBronze2.Size = new System.Drawing.Size(100, 50);
+            this.pbBronze2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbBronze2.TabIndex = 2;
+            this.pbBronze2.TabStop = false;
+            // 
+            // pbBronze1
+            // 
+            this.pbBronze1.Location = new System.Drawing.Point(90, 54);
+            this.pbBronze1.Name = "pbBronze1";
+            this.pbBronze1.Size = new System.Drawing.Size(100, 50);
+            this.pbBronze1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbBronze1.TabIndex = 1;
+            this.pbBronze1.TabStop = false;
             // 
             // ViewResults
             // 
@@ -355,14 +364,14 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.gbGold.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbGold2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGold1)).EndInit();
             this.gbSilver.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbSilver2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSilver1)).EndInit();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBronze2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbBronze1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -389,13 +398,13 @@
         private System.Windows.Forms.GroupBox gbSilver;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnGold;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbGold2;
+        private System.Windows.Forms.PictureBox pbGold1;
         private System.Windows.Forms.Button btnSilver;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pbSilver2;
+        private System.Windows.Forms.PictureBox pbSilver1;
         private System.Windows.Forms.Button btnBronze;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pbBronze2;
+        private System.Windows.Forms.PictureBox pbBronze1;
     }
 }
