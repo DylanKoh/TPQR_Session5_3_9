@@ -50,6 +50,9 @@ namespace TPQR_Session5_3_9
             pbSilver2.Image = null;
             pbBronze1.Image = null;
             pbBronze2.Image = null;
+            btnGold.Visible = false;
+            btnSilver.Visible = false;
+            btnBronze.Visible = false;
             using (var context = new Session5Entities())
             {
                 var getSkillID = (from x in context.Skills
@@ -91,6 +94,7 @@ namespace TPQR_Session5_3_9
                         else if (moreGold.Count == 2 && moreGold.ElementAt(0).Value - getTotalMarks <= 2 * moreGold.Count)
                         {
                             moreGold.Add(dataGridView1[1, row.Index].Value.ToString(), getTotalMarks);
+                            btnGold.Visible = true;
                         }
                         else
                         {
@@ -109,6 +113,7 @@ namespace TPQR_Session5_3_9
                                 else if (moreSilver.Count == 2 && moreSilver.ElementAt(0).Value - getTotalMarks <= 2 * moreSilver.Count)
                                 {
                                     moreSilver.Add(dataGridView1[1, row.Index].Value.ToString(), getTotalMarks);
+                                    btnSilver.Visible = true;
                                 }
                                 else
                                 {
@@ -127,6 +132,7 @@ namespace TPQR_Session5_3_9
                                         else if (moreBronze.Count == 2 && moreBronze.ElementAt(0).Value - getTotalMarks <= 2 * moreBronze.Count)
                                         {
                                             moreBronze.Add(dataGridView1[1, row.Index].Value.ToString(), getTotalMarks);
+                                            btnBronze.Visible = true;
                                         }
                                     }
                                 }
@@ -148,6 +154,7 @@ namespace TPQR_Session5_3_9
                         else if (moreSilver.Count == 2 && moreSilver.ElementAt(0).Value - getSessionTotal <= 2 * moreSilver.Count)
                         {
                             moreSilver.Add(dataGridView1[1, row.Index].Value.ToString(), Convert.ToInt32(dataGridView1[2, row.Index].Value));
+                            btnSilver.Visible = true;
                         }
                         else
                         {
@@ -166,6 +173,7 @@ namespace TPQR_Session5_3_9
                                 else if (moreBronze.Count == 2 && moreBronze.ElementAt(0).Value - getSessionTotal <= 2 * moreBronze.Count)
                                 {
                                     moreBronze.Add(dataGridView1[1, row.Index].Value.ToString(), Convert.ToInt32(dataGridView1[2, row.Index].Value));
+                                    btnBronze.Visible = true;
                                 }
                             }
                         }
@@ -185,6 +193,7 @@ namespace TPQR_Session5_3_9
                         else if (moreBronze.Count == 2 && moreBronze.ElementAt(0).Value - getSessionTotal <= 2 * moreBronze.Count)
                         {
                             moreBronze.Add(dataGridView1[1, row.Index].Value.ToString(), Convert.ToInt32(dataGridView1[2, row.Index].Value));
+                            btnBronze.Visible = true;
                         }
                     }
 
@@ -243,17 +252,53 @@ namespace TPQR_Session5_3_9
 
         private void btnGold_Click(object sender, EventArgs e)
         {
-
+            var sb = new StringBuilder("");
+            foreach (var item in moreGold)
+            {
+                if (sb.ToString() == "")
+                {
+                    sb.Append(item.Key);
+                }
+                else
+                {
+                    sb.Append($", {item.Key}");
+                }
+            }
+            MessageBox.Show(sb.ToString(), "More Gold", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnSilver_Click(object sender, EventArgs e)
         {
-
+            var sb = new StringBuilder("");
+            foreach (var item in moreSilver)
+            {
+                if (sb.ToString() == "")
+                {
+                    sb.Append(item.Key);
+                }
+                else
+                {
+                    sb.Append($", {item.Key}");
+                }
+            }
+            MessageBox.Show(sb.ToString(), "More Silver", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnBronze_Click(object sender, EventArgs e)
         {
-
+            var sb = new StringBuilder("");
+            foreach (var item in moreBronze)
+            {
+                if (sb.ToString() == "")
+                {
+                    sb.Append(item.Key);
+                }
+                else
+                {
+                    sb.Append($", {item.Key}");
+                }
+            }
+            MessageBox.Show(sb.ToString(), "More Bronze", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 
