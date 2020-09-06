@@ -47,7 +47,9 @@ namespace TPQR_Session5_3_9
 
         private void btnAnalyze_Click(object sender, EventArgs e)
         {
-
+            Hide();
+            (new AnalyzeResults()).ShowDialog();
+            Close();
         }
 
         private void btnCalculate_Click(object sender, EventArgs e)

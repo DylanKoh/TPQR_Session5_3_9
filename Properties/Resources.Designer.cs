@@ -63,6 +63,26 @@ namespace TPQR_Session5_3_9.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _12065697821256125215pitr_red_arrows_set_5_svg_med {
+            get {
+                object obj = ResourceManager.GetObject("12065697821256125215pitr_red_arrows_set_5.svg.med", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _41_411930_arrows_clip_art_download_up_green_arrow_png {
+            get {
+                object obj = ResourceManager.GetObject("41-411930_arrows-clip-art-download-up-green-arrow-png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ASC_2020_Logo {
             get {
                 object obj = ResourceManager.GetObject("ASC_2020_Logo", resourceCulture);
