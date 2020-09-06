@@ -593,5 +593,21 @@ namespace TPQR_Session5_3_9
             (new AdminMain()).ShowDialog();
             Close();
         }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            using (var context = new Session5Entities())
+            {
+                var value = dataGridView1[e.ColumnIndex, e.RowIndex].Value.ToString();
+                var getNameAndCountry = (from x in context.Competitors
+                                         where value.Contains(x.competitorId) && x.Skill.skillName == cbSkill.SelectedItem.ToString()
+                                         select new { Name = x.competitorName, Country = x.competitorCountry }).FirstOrDefault();
+                if (getNameAndCountry != null)
+                {
+                    dataGridView1[e.ColumnIndex, e.RowIndex].ToolTipText = $"{getNameAndCountry.Name}, {getNameAndCountry.Country}";
+                }
+
+            }
+        }
     }
 }
